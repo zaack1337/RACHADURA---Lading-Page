@@ -1,9 +1,33 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from "../components/header.astro"
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/header.astro";
 import "../styles/global.css";
 ---
 
 <Layout>
-	<Header />
+  <Header />
+  <main class="px-6 py-16">
+    <div class="max-w-2xl mx-auto space-y-16">
+      <div class="space-y-8">
+        <h1 class="text-3xl md:text-4xl font-serif leading-tight text-balance">
+          Understanding the systems that watch, collect, and control.
+        </h1>
+
+        <p
+          class="text-lg md:text-[19px] leading-relaxed text-zinc-700 text-pretty"
+        >
+          RACHADURA is an independent editorial project exploring how data
+          collection, surveillance technologies, and digital power structures
+          shape our lives. Written for everyone, free from tracking and
+          advertising.
+        </p>
+      </div>
+      <div class="border-1 border-zinc-300"></div>
+      <h2
+        class="text-sm md:text-[17px] uppercase tracking-wider text-zinc-500 mb-8"
+      >
+        Articles
+      </h2>
+    </div>
+  </main>
 </Layout>
