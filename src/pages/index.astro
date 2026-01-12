@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/header.astro";
+import { getCollection } from "astro:content";
 import "../styles/global.css";
+const articles = await getCollection("articles");
 ---
 
 <Layout>
@@ -28,6 +30,29 @@ import "../styles/global.css";
       >
         Articles
       </h2>
+      <ul class="space-y-8">
+        {
+          articles
+            .sort(
+              (a, b) =>
+                new Date(b.data.date).getTime() -
+                new Date(a.data.date).getTime()
+            )
+            .map((article) => (
+              <li>
+                <a
+                  href={`/articles/${article.slug}`}
+                  class="block space-y-1 group"
+                >
+                  <h3 class="text-xl font-serif group-hover:underline">
+                    {article.data.title}
+                  </h3>
+                  <p class="text-zinc-600">{article.data.description}</p>
+                </a>
+              </li>
+            ))
+        }
+      </ul>
     </div>
   </main>
 </Layout>

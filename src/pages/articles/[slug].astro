@@ -1,0 +1,35 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import "../../styles/markdown.css";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles");
+
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+---
+
+<Layout>
+  <main class="px-6 py-16">
+    <div class="max-w-2xl mx-auto space-y-8">
+      <h1 class="text-3xl font-serif">
+        {article.data.title}
+      </h1>
+
+      <p class="text-zinc-500">
+        {new Date(article.data.date).toLocaleDateString("pt-BR")}
+      </p>
+
+      <article class="markdown">
+        <Content />
+      </article>
+    </div>
+  </main>
+</Layout>
